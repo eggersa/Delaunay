@@ -8,12 +8,30 @@ namespace Delaunay
     {
         private readonly List<Point> vertices;
         private readonly List<Triangle> triangles;
-        private readonly Triangle initialTriangle;
+
+        private Triangle superTriangle;
 
         public Delaunay(IEnumerable<Point> vertices)
         {
             this.vertices = vertices.ToList();
+            InitializeSuperTriangle();
+        }
 
+        public bool Triangulate()
+        {
+            return false;
+        }
+
+        public void Draw(Graphics g)
+        {
+            superTriangle.Draw(g);
+        }
+
+        /// <summary>
+        /// Initializes superTriangle such that all vertices are totally inside.
+        /// </summary>
+        private void InitializeSuperTriangle()
+        {
             // Create initial triangle containing all vertices
             //
             // Another approach https://www.math.colostate.edu/~benoit/Java/math/delaunay/Delaunay.java
@@ -28,19 +46,10 @@ namespace Delaunay
                 new Point(-xMax, yMax + yPadding)
             };
 
-            initialTriangle.A = new Edge(initialVertices, 0, 1);
-            initialTriangle.B = new Edge(initialVertices, 1, 2);
-            initialTriangle.C = new Edge(initialVertices, 2, 0);
-        }
-
-        public bool Triangulate()
-        {
-            return false;
-        }
-
-        public void Draw(Graphics g)
-        {
-            initialTriangle.Draw(g);
+            superTriangle = new Triangle(
+                new IndexedEdge(initialVertices, 0, 1),
+                new IndexedEdge(initialVertices, 1, 2),
+                new IndexedEdge(initialVertices, 2, 0));
         }
     }
 }

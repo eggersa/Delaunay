@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Delaunay
 {
-    public class Edge
+    public class IndexedEdge
     {
         private readonly IList<Point> vertices;
 
@@ -11,12 +11,12 @@ namespace Delaunay
 
         public int Index2 { get; set; }
 
-        public Edge(IList<Point> vertices)
+        public IndexedEdge(IList<Point> vertices)
         {
             this.vertices = vertices;
         }
 
-        public Edge(IList<Point> vertices, int index1, int index2) 
+        public IndexedEdge(IList<Point> vertices, int index1, int index2) 
             : this(vertices)
         {
             Index1 = index1;

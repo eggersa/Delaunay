@@ -4,17 +4,17 @@ namespace Delaunay
 {
     public class Triangle
     {
-        public Edge A { get; set; }
+        public IndexedEdge A { get; set; }
 
-        public Edge B { get; set; }
+        public IndexedEdge B { get; set; }
 
-        public Edge C { get; set; }
+        public IndexedEdge C { get; set; }
 
         public Triangle()
         {
         }
 
-        public Triangle(Edge a, Edge b, Edge c)
+        public Triangle(IndexedEdge a, IndexedEdge b, IndexedEdge c)
         {
             A = a;
             B = b;
